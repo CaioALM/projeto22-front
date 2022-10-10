@@ -25,7 +25,7 @@ export default function RegisterPage() {
               
         } catch (e) {
             alert(e.response.data);
-            setUserSignUp({ name: "", email: "", password: ""});
+            setUserSignUp({ name: "", age: "", belt: "", email: "", password: ""});
         }
     }
 
@@ -35,7 +35,7 @@ export default function RegisterPage() {
                 <input type="text" id="name" value={userSignUp.name} placeholder="Nome" required
                     onChange={(e) => setUserSignUp({ ...userSignUp, name: e.target.value })} />
 
-                    <input type="text" id="age" value={userSignUp.age} placeholder="Idade" required
+                    <input type="text" id="age" value={userSignUp.age} placeholder="Idade (ex: 25)" required
                     onChange={(e) => setUserSignUp({ ...userSignUp, age: e.target.value })} />
 
                     <input type="text" id="belt" value={userSignUp.belt} placeholder="Faixa (ex: azul)" required

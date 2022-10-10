@@ -5,7 +5,7 @@ function Header() {
   return (
     <Content>
       <img src={Logo} alt="Logo" />
-      <h1>OldSchool Jiu Jitsu</h1>
+      <h1>Magoo&Max Jiu Jitsu</h1>
     </Content>
   );
 }

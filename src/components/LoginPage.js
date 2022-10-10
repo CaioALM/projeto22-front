@@ -13,16 +13,16 @@ export default function LoginPage() {
     const { setUserInfo } = useContext(UserContext);
 
 
-    const [userSignUp, setUserSignUp] = useState({ email: "", password: "" });
+    const [userSignIn, setUserSignIn] = useState({ email: "", password: "" });
 
     const navigate = useNavigate();
 
-    async function postRegister(e) {
+    async function postLogin(e) {
         e.preventDefault();
         try {
             const data = {
-                name: userSignUp.name,
-                email: userSignUp.email,
+                name: userSignIn.name,
+                email: userSignIn.email,
                 };
 
                 const response = await axios.post("http://localhost:4000/login", data);
@@ -31,18 +31,18 @@ export default function LoginPage() {
               
         } catch (e) {
             alert(e.response.data);
-            setUserSignUp({ name: "", email: "", password: ""});
+            setUserSignIn({ email: "", password: ""});
         }
     }
 
     function montaformularioSignIn() {
         return (
             <>
-                <input type="email" id="email" value={userSignUp.email} placeholder="E-mail" required
-                    onChange={(e) => setUserSignUp({ ...userSignUp, email: e.target.value })} />
+                <input type="email" id="email" value={userSignIn.email} placeholder="E-mail" required
+                    onChange={(e) => setUserSignIn({ ...userSignIn, email: e.target.value })} />
 
-                <input type="password" id="password" value={userSignUp.password} placeholder="Senha" required
-                    onChange={(e) => setUserSignUp({ ...userSignUp, password: e.target.value })} />
+                <input type="password" id="password" value={userSignIn.password} placeholder="Senha" required
+                    onChange={(e) => setUserSignIn({ ...userSignIn, password: e.target.value })} />
                 <div>
                     <Button type="submit">Entrar</Button>
                 </div>
@@ -50,15 +50,15 @@ export default function LoginPage() {
         )
     }
     function registerLogin(obj) {
-        //     setUserInfo({
-        //     config: {
-        //       headers: {
-        //         authorization: `Bearer ${obj.token}`,
-        //       },
-        //     },
-        //   });
+            setUserInfo({
+            config: {
+              headers: {
+                authorization: `Bearer ${obj.token}`,
+              },
+            },
+          });
 
-      navigate("/produtos");
+      navigate("/payments");
     }
   
 
@@ -70,7 +70,7 @@ export default function LoginPage() {
             <Main>
                 <img src={Logo} alt="Logo" />
                 <h1> Magoo & Max  Jiu Jitsu </h1>
-                <FormularioCompra onSubmit={postRegister}>
+                <FormularioCompra onSubmit={postLogin}>
                     {formularioSignIn}
                 </FormularioCompra>
                 <StyledLink to="/register"> Não é cadastrado, cadastre-se agora </StyledLink>
@@ -100,13 +100,13 @@ const FormularioCompra = styled.form`
 `;
 
 const Main = styled.main`
-    margin-top: 80px;
+    margin: 80px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
   
-    height: 100vh;
+    height: 100%;
     background-color: grey;
     background-image: url('../assets/images/oldschool.jpeg');
     
@@ -137,6 +137,8 @@ const StyledLink = styled(Link)`
         line-height: 18px;
         color: #FFFFFF;
         text-decoration: none;
+        margin: 60px;
+        padding-bottom: 100px;
 `;
 
 const Button = styled.button`
