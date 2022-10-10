@@ -5,19 +5,18 @@ import {useNavigate} from 'react-router'
 
 function InitialScreen() {
     const navigate = useNavigate();
-
-    function changePage(){
-        navigate("/register")
-    }
+    
   return (
     <div>
       <Container>
         <h1>Seja bem vindo a maior equipe de Jiu Jitsu do sul do estado</h1>
         <Main>
-                <h2>Gostaria de ver os horários de treinos disponíveis?</h2>
-                <StyledLink to="/horarios"> <h2>Horários de treinos</h2> </StyledLink>
+                <Button>
+                  <StyledLink to="/horarios"> <h2>Horários de treinos</h2> </StyledLink>
+                </Button>
+                
 
-                <StyledLink to="/register" onClick={changePage}> Novo por aqui? Cadastre-se </StyledLink>
+                <StyledLink to="/register"> Novo por aqui? Cadastre-se </StyledLink>
                 <StyledLink to="/login"> Possui uma conta? </StyledLink>
         </Main>
       </Container>
@@ -55,6 +54,15 @@ const Main = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        text-decoration: none;
+`;
+const Button = styled(Link)`
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;

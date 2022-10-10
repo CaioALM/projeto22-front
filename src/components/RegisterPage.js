@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import Logo from "../assets/images/oldschool.jpeg";
 
 export default function RegisterPage() {
-    const [userSignUp, setUserSignUp] = useState({ name: "", email: "", password: "" });
+    const [userSignUp, setUserSignUp] = useState({ name: "", age: "", belt: "", email: "", password: "" });
     const navigate = useNavigate();
 
     async function postRegister(e) {
@@ -14,6 +14,8 @@ export default function RegisterPage() {
         try {
             const data = {
                 name: userSignUp.name,
+                age: userSignUp.age,
+                belt: userSignUp.belt,
                 email: userSignUp.email,
                 password: userSignUp.password
                 };
@@ -33,6 +35,12 @@ export default function RegisterPage() {
                 <input type="text" id="name" value={userSignUp.name} placeholder="Nome" required
                     onChange={(e) => setUserSignUp({ ...userSignUp, name: e.target.value })} />
 
+                    <input type="text" id="age" value={userSignUp.age} placeholder="Idade" required
+                    onChange={(e) => setUserSignUp({ ...userSignUp, age: e.target.value })} />
+
+                    <input type="text" id="belt" value={userSignUp.belt} placeholder="Faixa (ex: azul)" required
+                    onChange={(e) => setUserSignUp({ ...userSignUp, belt: e.target.value })} />
+
                 <input type="email" id="email" value={userSignUp.email} placeholder="E-mail" required
                     onChange={(e) => setUserSignUp({ ...userSignUp, email: e.target.value })} />
 
@@ -40,6 +48,7 @@ export default function RegisterPage() {
                     onChange={(e) => setUserSignUp({ ...userSignUp, password: e.target.value })} />
                 <div>
                     <Button type="submit">Cadastrar</Button>
+
                 </div>
             </>
         )
@@ -83,6 +92,7 @@ const FormularioCompra = styled.form`
 
 const Main = styled.main`
     margin-top: 80px;
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,6 +122,8 @@ const Main = styled.main`
 ` ;
 
 const StyledLink = styled(Link)`
+
+        margin: 30px;
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;
